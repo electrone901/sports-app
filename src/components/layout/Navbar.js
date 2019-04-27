@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 // import { connect } from 'react-redux';
-// import logo from '../../img/logo.svg';
+import logo from '../img/logo.png';
 // import Popup from '../deals/Popup';
-import { Nav } from 'react-bootstrap';
 
 // import { logoutUser } from '../../actions/authActions';
 
@@ -77,9 +76,9 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-light btn-light sticky-top">
         <div className="container">
-          {/* <Link className="navbar-brand logo" to="/">
+          <Link className="navbar-brand logo" to="/">
             <img src={logo} alt="logo"/>
-          </Link> */}
+          </Link>
 
           <button
             className="navbar-toggler"
@@ -137,10 +136,4 @@ class Navbar extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   auth: state.auth
-// });
-
 export default Navbar;
-// export default withRouter(connect(mapStateToProps, {logoutUser})(Navbar));
-
