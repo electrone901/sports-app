@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import logo from '../../img/l3.png';
-import Popup from '../deals/Popup';
+// import { connect } from 'react-redux';
+// import logo from '../../img/logo.svg';
+// import Popup from '../deals/Popup';
+import { Nav } from 'react-bootstrap';
 
-import { logoutUser } from '../../actions/authActions';
+// import { logoutUser } from '../../actions/authActions';
 
 class Navbar extends Component {
   constructor() {
@@ -25,29 +26,29 @@ class Navbar extends Component {
     this.props.history.push(`/profile/${user.id}`);
   }
 
-  togglePopup() {
+  // togglePopup() {
     
-    if(this.props.auth.isAuthenticated) {
-      this.props.history.push('/addDeal');
-    }
-    else {
-      this.setState({
-        showPopup: !this.state.showPopup
-      });
-    }
-  }
+  //   if(this.props.auth.isAuthenticated) {
+  //     this.props.history.push('/addDeal');
+  //   }
+  //   else {
+  //     this.setState({
+  //       showPopup: !this.state.showPopup
+  //     });
+  //   }
+  // }
   
   render() {
-    const {isAuthenticated, user} = this.props.auth;
+    // const {isAuthenticated, user} = this.props.auth;
     // const nameArray = user.name.split(" ");
     // const name = nameArray[0];
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         
         <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <Link to={`/profile/${user.id}`} className="nav-link">
+          {/* <Link to={`/profile/${user.id}`} className="nav-link">
             Profile
-          </Link>
+          </Link> */}
         </li>
         <li className="nav-item">
           <Link to="/" onClick={this.onLogoutClick.bind(this)} className="nav-link">
@@ -76,9 +77,9 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-light btn-light sticky-top">
         <div className="container">
-          <Link className="navbar-brand logo" to="/">
+          {/* <Link className="navbar-brand logo" to="/">
             <img src={logo} alt="logo"/>
-          </Link>
+          </Link> */}
 
           <button
             className="navbar-toggler"
@@ -93,9 +94,9 @@ class Navbar extends Component {
 
           <div className="collapse navbar-collapse" id="mobile-nav"> 
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item nav-link">
+              {/* <li className="nav-item nav-link">
                 {isAuthenticated ? authLinks : guestLinks}
-              </li>
+              </li> */}
             </ul>
             <ul className="navbar-nav text-right">
 
@@ -111,11 +112,11 @@ class Navbar extends Component {
                 </Link>
               </li>
 
-              <li className="btn btn-primary text-left" data-toggle="collapse" data-target=".navbar-collapse.show"  onClick={this.togglePopup.bind(this)}>
+              {/* <li className="btn btn-primary text-left" data-toggle="collapse" data-target=".navbar-collapse.show"  onClick={this.togglePopup.bind(this)}>
                   {' '}
                     Create a post
-              </li>
-              <li className="nav-item nav-link row text-center">
+              </li> */}
+              {/* <li className="nav-item nav-link row text-center">
                 {
                     this.state.showPopup ? 
                       <Popup
@@ -125,7 +126,7 @@ class Navbar extends Component {
                       />
                       : null
                 }
-              </li>
+              </li> */}
             </ul>
            
           </div>
@@ -136,9 +137,10 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
-});
+// const mapStateToProps = (state) => ({
+//   auth: state.auth
+// });
 
-export default withRouter(connect(mapStateToProps, {logoutUser})(Navbar));
+export default Navbar;
+// export default withRouter(connect(mapStateToProps, {logoutUser})(Navbar));
 
