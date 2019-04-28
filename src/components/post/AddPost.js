@@ -70,10 +70,12 @@ class AddPost extends Component {
       	params.city = goal;
       	params.goal = city;
 
-		axios.defaults.headers.common['authenticationtoken'] = localStorage.jwtToken;
+		//axios.defaults.headers.common['authenticationtoken'] = localStorage.jwtToken;
 		axios.post("https://meetsportserver.herokuapp.com/feed", params)
 	  	.then(response => {
 	  		console.log('response',response)
+	  		window.location.href = "./";
+	  		
 	  	})
        .then(res => {
            return console.log(res);

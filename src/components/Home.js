@@ -6,6 +6,7 @@ import messageImg from './img/message.png';
 import Navbar from './layout/Navbar';
 import 'font-awesome/css/font-awesome.min.css';
 import { Link } from 'react-router-dom';
+import Footer from './layout/Footer';
  
 class home extends Component{
     constructor() {
@@ -88,6 +89,7 @@ class home extends Component{
                         })  
                     ):<p>Loading ...</p>
                 }
+                <Footer />
             </div>
             </div>
         );
