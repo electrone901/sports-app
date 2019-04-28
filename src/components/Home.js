@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import { Button ,Badge} from 'react-bootstrap';
 
 

@@ -1,0 +1,50 @@
+ .fe1 {
+ 	
+ 	font-family: 'Roboto', sans-serif;
+	background-image: linear-gradient(#1c6276, #268b94);
+	height:100vh;
+	color:white;
+	font-size: 19px;
+	
+}
+
+
+ .fe2 {
+ 	height: 150px;
+	display: inline-block;
+  	vertical-align: middle;
+	color:white;
+	
+	text-align: center;
+
+
+	
+}
+
+.form-control{
+	background-color: transparent;
+	color: white;
+	font-size: 19px;
+	border-bottom: #53abac;
+	border-left: #53abac;
+
+
+}
+
+
+.tag1 {
+
+	display: inline-block;
+  	vertical-align: middle;
+	
+	font-size: 24px;
+	text-align: center;
+}
+
+.clickArrow{
+	font-size: 34px;
+	text-align: right;
+}
+
+
+
