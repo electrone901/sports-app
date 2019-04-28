@@ -1,18 +1,97 @@
-import React from 'react';
-import { Button ,Badge} from 'react-bootstrap';
+import React, {Component} from 'react';
+import userImg from './img/user1.jpg';
+import userImg1 from './img/user2.jpg';
+import userImg2 from './img/user3.jpg';
+import messageImg from './img/message.png';
+import Navbar from './layout/Navbar';
+import 'font-awesome/css/font-awesome.min.css';
+import { Link } from 'react-router-dom';
+ 
+class home extends Component{
+    constructor() {
+        super();
+        this.state = {
+            data: '', 
+            pic: [
+                "images/user1.jpg",
+                "images/user2.jpg",
+                "images/user3.jpg",
+                "images/user4.jpg",
+                "images/user5.jpg",
+                "images/user6.jpg",
+                "images/user8.jpg",
+                "images/user9.jpg",
+                "images/user10.jpg",
+                "images/user11.jpg",
+                "images/user12.jpg"
+            ]
+        }
+    }
 
 
-const home = () => {
-    return (
-        <div className="container">
+    componentDidMount() {
+        window.scrollTo(0,0);
+        fetch("https://meetsportserver.herokuapp.com/feed")
+        .then(response => response.json())
+        .then(res => {
+            this.setState({data: res.items})
+            return console.log(res.items)
+        })
+        .catch((err) => {
+            console.log('There was a problem with your fetch request' + err.message);
+        });
+    }
+    render() {
+        const { pic } = this.state;
+        console.log("state", this.state.data) 
+        return (
+            <div className="container" >
+            
+            <div className="container text-center">
+                <Navbar/>
+                <h4 className="Sportfeed" >Sport Feed</h4>
+                {
+                    this.state.data ? (
+                        this.state.data.map((item, key) => {
+                            var pic1 = pic[Math.floor(Math.random()*11)];
+                            return (
+                                <div className="container" key={key}>
+                                    <div className="row boxUser">
+                                        <div className="col-4">
+                                            <div className="image-parent">
+                                                <img src={pic1} className="thumbnail-user-profile" alt="Responsive"/> 
+                                            </div>
+                                        </div>
+                                        <div className="col-8 feedPostDescription">
+                                            <div className="">
+                                                <p className="post-title">{item.userName} ({item.favoriteSport},  {item.level})</p>
+                                                <p className="parrographPadding">{item.goal}</p>
+                                                <div className="row">
+                                                    <div className="col-9">
+                                                        <p>{item.city} New York</p>
+                                                    </div>
+                                                    <div className="col-3">
+                                                    <Link to="/send-message">
+                                                        <img src={messageImg} className="messageImg" alt="Responsive"/>
+                                                    </Link>
+                                                        
+                                                    </div>
 
-<script>var Alert = ReactBootstrap.Alert;</script>
-
-            <h1 className="home__header">Home Page</h1>
-            <Button variant="secondary">Secondary</Button>
-            <Badge variant="primary">Primary</Badge>
-        </div>
-    );
-};
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                            </div>
+                            )
+                        })  
+                    ):<p>Loading ...</p>
+                }
+            </div>
+            </div>
+        );
+    }
+}
 
 export default home;

@@ -5,7 +5,8 @@ import axios from 'axios';
 
 
 
-import { IoIosArrowForward } from "react-icons/io";
+
+import { IoIosAnalytics, IoIosAdd } from "react-icons/io";
 
 
 
@@ -21,7 +22,7 @@ class AddPost extends Component {
   	}
 
    componentDidMount() {	
-   	console.log(JSON.stringify(localStorage.jwtToken1));
+   	console.log(JSON.stringify(localStorage.jwtToken));
 	 		
 	}
 
@@ -42,6 +43,11 @@ class AddPost extends Component {
  
   	}
 
+  	skip(){
+  		
+  		window.location.href = "./";
+  	}
+
   	handleSubmit(event) {
 	    console.log(event);
 	    //alert("this");
@@ -59,14 +65,13 @@ class AddPost extends Component {
 
 
       	var params = {};
-      	params.favoriteSport =game;
+      	params.favoriteSport = game;
       	params.level = level;
       	params.city = goal;
       	params.goal = city;
-      	
 
-
-	  	axios.post("https://meetsportserver.herokuapp.com/feed", params)
+		axios.defaults.headers.common['authenticationtoken'] = localStorage.jwtToken;
+		axios.post("https://meetsportserver.herokuapp.com/feed", params)
 	  	.then(response => {
 	  		console.log('response',response)
 	  	})
@@ -78,6 +83,8 @@ class AddPost extends Component {
        });
 
   	}
+
+
 
 
 
@@ -133,8 +140,12 @@ class AddPost extends Component {
 						  </Form.Group>
 						  <div className="clickArrow">
 								<br/>
-								<Button type="submit">Submit form</Button>
-								<IoIosArrowForward/>
+
+								<Button className="submitButton1" onClick={this.skip}>    Skip  </Button>
+
+								<Button className="submitButton1" type="submit">Submit</Button>
+
+								
 		  					</div>
 
 						</Form>

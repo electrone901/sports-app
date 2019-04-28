@@ -21,7 +21,7 @@ class NameForm extends Component {
 
    componentDidMount() {	
    		console.log(localStorage.jwtToken1);
-   		if(localStorage.jwtToken1){
+   		if(localStorage.jwtToken){
    			window.location.href = "./add-post";
    		}
 	 		
@@ -50,15 +50,15 @@ class NameForm extends Component {
       	params.email=email;
       	params.password=password;
 
-
-
-
-	  	axios.post("https://meetsportserver.herokuapp.com/user/signup", params)
+		axios.post("https://meetsportserver.herokuapp.com/user/signup", params)
 	  	.then(response => {
 	  		console.log('response',response)
 	  		var token= response.data;
-        	localStorage.setItem('jwtToken1',JSON.stringify(token));
-           return console.log(response.data);
+	  		var user = response.data.user;
+        	localStorage.setItem('jwtToken',token.token);
+        	localStorage.setItem('name',user.name);
+			localStorage.setItem('userid',user._id);
+			window.location.href = "./add-post";
 	  	})
        .catch((err) => {
            console.log('There was a problem with your fetch request' + err.message);
@@ -105,7 +105,7 @@ class NameForm extends Component {
 						  </Form.Group>
 						  	<div className="clickArrow">
 								<br/>
-								<Button type="submit">Submit form</Button>
+								<Button className="submitButton" type="submit">Submit form</Button>
 								<IoIosArrowForward/>
 		  					</div>
 						 

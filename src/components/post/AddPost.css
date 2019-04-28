@@ -4,8 +4,15 @@
 	background-image: linear-gradient(#1c6276, #268b94);
 	height:100vh;
 	color:white;
-	font-size: 19px;
+	/*font-size: 19px;*/
 	
+}
+
+.submitButton{
+	border: 1px solid white;
+	background-color: transparent;
+	margin:3px;
+
 }
 
 
@@ -37,14 +44,20 @@
 	display: inline-block;
   	vertical-align: middle;
 	
-	font-size: 24px;
+	/*font-size: 24px;*/
 	text-align: center;
 }
 
 .clickArrow{
-	font-size: 34px;
-	text-align: right;
+	/*font-size: 34px;*/
+	/*text-align: right;*/
 }
+
+
+select.form-control:not([size]):not([multiple]) {
+    height: auto;
+}
+
 
 
 
