@@ -20,7 +20,10 @@ class NameForm extends Component {
   	}
 
    componentDidMount() {	
-   		console.log(localStorage.jwtToken);
+   		console.log(localStorage.jwtToken1);
+   		if(localStorage.jwtToken1){
+   			window.location.href = "./add-post";
+   		}
 	 		
 	}
 
@@ -31,6 +34,7 @@ class NameForm extends Component {
 
 
 	handleSubmit(event) {
+
 	    console.log(event);
 	    //alert("this");
 	    event.preventDefault();
@@ -53,7 +57,7 @@ class NameForm extends Component {
 	  	.then(response => {
 	  		console.log('response',response)
 	  		var token= response.data;
-        	localStorage.setItem('jwtToken',token);
+        	localStorage.setItem('jwtToken1',JSON.stringify(token));
            return console.log(response.data);
 	  	})
        .catch((err) => {
@@ -70,6 +74,10 @@ class NameForm extends Component {
 
 
 	render() {
+
+		if(localStorage.jwtToken1){
+   			window.location.href = "./add-post";
+   		}
 	  	return (
 
 			<Container className="fe1">
