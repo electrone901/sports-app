@@ -19,6 +19,11 @@ body {
   -webkit-box-shadow: 0 0 2px 0 rgba(46,62,72,.12), 0 2px 4px 0 rgba(46,62,72,.12);
   box-shadow: 0 0 2px 0 rgba(46,62,72,.12), 0 2px 4px 0 rgba(46,62,72,.12);
 }
+.boxChat {
+  box-shadow: 0 0 2px 0 rgba(46,62,72,.12), 0 2px 4px 0 rgb(37, 37, 41);
+  height: 350px;
+}
+
 
 .feedPostDescription {
   text-align: left;
@@ -44,6 +49,12 @@ body {
   margin-top: 4px;
   margin-bottom: 4px;
 
+}
+
+.customeBtn {
+  /* max-height: -1px; */
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 

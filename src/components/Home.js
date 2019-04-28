@@ -4,6 +4,7 @@ import userImg1 from './img/user2.jpg';
 import userImg2 from './img/user3.jpg';
 import messageImg from './img/message.png';
 import 'font-awesome/css/font-awesome.min.css';
+import { Link } from 'react-router-dom';
  
 class home extends Component{
     constructor() {
@@ -58,14 +59,17 @@ class home extends Component{
                                         </div>
                                         <div className="col-8 feedPostDescription">
                                             <div className="">
-                                                <p className="post-title">user name ({item.favoriteSport},  {item.level})</p>
+                                                <p className="post-title">{item.userName} ({item.favoriteSport},  {item.level})</p>
                                                 <p className="parrographPadding">{item.goal}</p>
                                                 <div className="row">
                                                     <div className="col-9">
                                                         <p>{item.city} New York</p>
                                                     </div>
                                                     <div className="col-3">
+                                                    <Link to="/send-message">
                                                         <img src={messageImg} className="messageImg" alt="Responsive"/>
+                                                    </Link>
+                                                        
                                                     </div>
 
                                                 </div>
