@@ -1,51 +1,87 @@
-import React from 'react';
-const home = () => {
-    return (
-        <div className="container text-center">
-            <h1 className="home__header">Home Page</h1>
-            <button className="btn btn-primary">Secondary</button>
-            
-            <div className="row">
-                <div className="col-8">
-                    <h6 className="text-muted">List Group with Images</h6> 
-                    <ul className="list-group">
-                    <a href="#" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <div className="flex-column">
-                        Don Quixote 
-                        <p><small>by Miguel de Cervantes</small></p>
-                        <span className="badge badge-info badge-pill"> 2 Copies in Stock</span>
-                        </div>
-                        <div className="image-parent">
-                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/don_quixote.jpg" className="img-fluid" alt="quixote"/>
-                        </div>
-                    </a>
-                    <a href="#" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <div className="flex-column">
-                        As I Lay Dying 
-                        <p><small>by William Faulkner</small></p>
-                        <span className="badge badge-primary badge-pill"> 5 Copies in Stock</span>
-                        </div>
-                        <div className="image-parent">
-                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/as_I_lay.jpg" className="img-fluid" alt="lay" />
-                        </div>
-                    </a>
-                    <a href="#" className="list-group-item list-group-item-action d-flex justify-content-between align-items-center disabled">  
-                        <div className="flex-column">
-                        Things Fall Apart
-                        <p><small>by Miguel de Cervantes</small></p>
-                        <span className="badge badge-danger badge-pill"> 0 Copies in Stock</span>
-                        </div>
-                        <div className="image-parent">
-                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/things_fall_apart.jpg" class="img-fluid" alt="things" />
-                        </div>
-                    </a>
-                    </ul>
-                </div>
-                
-            </div>
+import React, {Component} from 'react';
+import userImg from './img/user1.jpg';
+import userImg1 from './img/user2.jpg';
+import userImg2 from './img/user3.jpg';
+import messageImg from './img/message.png';
+import 'font-awesome/css/font-awesome.min.css';
+ 
+class home extends Component{
+    constructor() {
+        super();
+        this.state = {
+            data: '', 
+            pic: [
+                "images/user1.jpg",
+                "images/user2.jpg",
+                "images/user3.jpg",
+                "images/user4.jpg",
+                "images/user5.jpg",
+                "images/user6.jpg",
+                "images/user8.jpg",
+                "images/user9.jpg",
+                "images/user10.jpg",
+                "images/user11.jpg",
+                "images/user12.jpg"
+            ]
+        }
+    }
 
-        </div>
-    );
-};
+    componentDidMount() {
+        window.scrollTo(0,0);
+        fetch("https://meetsportserver.herokuapp.com/feed")
+        .then(response => response.json())
+        .then(res => {
+            this.setState({data: res.items})
+            return console.log(res.items)
+        })
+        .catch((err) => {
+            console.log('There was a problem with your fetch request' + err.message);
+        });
+    }
+    render() {
+        const { pic } = this.state;
+        console.log("state", this.state.data)
+        return (
+            <div className="container text-center">
+                <h1 className="home__header">Sport Feed</h1>
+                {
+                    this.state.data ? (
+                        this.state.data.map((item, key) => {
+                            var pic1 = pic[Math.floor(Math.random()*11)];
+                            return (
+                                <div className="container" key={key}>
+                                    <div className="row boxUser">
+                                        <div className="col-4">
+                                            <div className="image-parent">
+                                                <img src={pic1} className="thumbnail-user-profile" alt="Responsive"/> 
+                                            </div>
+                                        </div>
+                                        <div className="col-8 feedPostDescription">
+                                            <div className="">
+                                                <p className="post-title">user name ({item.favoriteSport},  {item.level})</p>
+                                                <p className="parrographPadding">{item.goal}</p>
+                                                <div className="row">
+                                                    <div className="col-9">
+                                                        <p>{item.city} New York</p>
+                                                    </div>
+                                                    <div className="col-3">
+                                                        <img src={messageImg} className="messageImg" alt="Responsive"/>
+                                                    </div>
+
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                            </div>
+                            )
+                        })  
+                    ):<p>Loading ...</p>
+                }
+            </div>
+        );
+    }
+}
 
 export default home;
